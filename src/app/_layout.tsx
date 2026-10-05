@@ -1,18 +1,45 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from 'expo-router';
+import { DarkTheme, Stack, ThemeProvider } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import { useColorScheme } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import { useEffect } from 'react';
 
-import { AnimatedSplashOverlay } from '@/components/animated-icon';
-import AppTabs from '@/components/app-tabs';
+import { C } from '@/constants/theme';
+import { StoreProvider, useStore } from '@/lib/store';
 
 SplashScreen.preventAutoHideAsync();
 
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
+const theme = {
+  ...DarkTheme,
+  colors: { ...DarkTheme.colors, background: C.bg, card: C.bg, text: C.text, border: C.border, primary: C.gold },
+};
+
+function Root() {
+  const { ready } = useStore();
+  useEffect(() => {
+    if (ready) SplashScreen.hideAsync();
+  }, [ready]);
+  if (!ready) return null;
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <AnimatedSplashOverlay />
-      <AppTabs />
+    <Stack
+      screenOptions={{
+        headerStyle: { backgroundColor: C.bg },
+        headerTintColor: C.text,
+        headerTitleStyle: { fontWeight: '700' },
+        contentStyle: { backgroundColor: C.bg },
+      }}>
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack.Screen name="agent/[id]" options={{ title: '' }} />
+    </Stack>
+  );
+}
+
+export default function RootLayout() {
+  return (
+    <ThemeProvider value={theme}>
+      <StoreProvider>
+        <StatusBar style="light" />
+        <Root />
+      </StoreProvider>
     </ThemeProvider>
   );
 }
