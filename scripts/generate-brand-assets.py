@@ -74,9 +74,11 @@ title = ImageFont.truetype("/usr/share/fonts/truetype/liberation/LiberationSerif
 sub = ImageFont.truetype("/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf", 32)
 tag = ImageFont.truetype("/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf", 20)
 x = 470
-d.text((x, 135), "POWER PACK", font=tag, fill=GOLD, spacing=0)
-d.text((x - 4, 165), "TreasureRate", font=title, fill=(245, 242, 234))
-d.line([(x, 275), (x + 70, 275)], fill=GOLD, width=3)
-d.text((x, 297), "10 AI agents for", font=sub, fill=(161, 157, 148))
-d.text((x, 337), "solo business owners", font=sub, fill=(161, 157, 148))
+lines = ["10 AI agents for solo business owners,", "highly productive people and teams"]
+sub = ImageFont.truetype("/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf", 26)
+d.text((x, 130), "POWER PACK", font=tag, fill=GOLD)
+d.text((x - 4, 160), "TreasureRate", font=title, fill=(245, 242, 234))
+d.line([(x, 270), (x + 70, 270)], fill=GOLD, width=3)
+for i, line in enumerate(lines):
+    d.text((x, 292 + i * 36), line, font=sub, fill=(161, 157, 148))
 fg.convert("RGB").save(R + "store/play-feature-graphic-1024x500.png", optimize=True)
