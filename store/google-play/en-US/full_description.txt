@@ -1,4 +1,4 @@
-TreasureRate is an AI business assistant for solo owners, freelancers and small teams. Ten focused tools handle the writing and admin that eat your week: customer replies, Google review responses, social posts, invoices, quotes, contracts and more.
+TreasureRate is an AI business assistant for solo owners, freelancers and small teams. Ten focused tools handle the writing and admin that eat your week: invoices and estimates, receipts and expenses, customer replies, Google review responses, social posts, contracts and more.
 
 Tell it about your business once. Every tool uses your name, services, prices and tone, so results come back ready to send instead of full of blanks.
 
@@ -11,9 +11,9 @@ MARKETING CONTENT
 • Content Factory: write a blog post, newsletter or promo email from a short brief.
 • Rewrite in My Voice: paste a rough draft and get polished copy that keeps every fact.
 
-INVOICES, QUOTES AND ADMIN
-• Quote & Invoice: type your job notes ("3 sessions at $250, $40 travel, net 15") and get a clean invoice or estimate with line items and totals.
-• Expense Log: paste messy expenses and get a categorized expense list with totals per category.
+INVOICES, ESTIMATES AND ADMIN
+• Invoice & Estimate: type your job notes ("3 sessions at $250, $40 travel, net 15") and get a clean invoice or estimate with line items and totals. Works as a simple invoice maker for contractors, cleaners, consultants and freelancers.
+• Expense Log: paste messy expenses or receipt details and get a categorized expense list with totals per category.
 • Contract Check: paste a contract and get a plain-English summary, key dates and payments, and the clauses worth questioning before you sign. Not legal advice.
 
 GROW

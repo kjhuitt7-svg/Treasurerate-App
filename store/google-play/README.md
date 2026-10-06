@@ -24,7 +24,7 @@ Competition = how many of Play's top 10 US results already have the phrase in th
 | contract review / analyzer | 1 | Full description |
 | ats resume checker | 1 | Full description |
 | real estate listing description | 0 | Full description |
-| invoice maker | 9 | Mentioned, not targeted: crowded |
+| invoice maker / estimate maker | 9 / 6 | Short + full description: highest Play demand of our tools (top apps 1–5M installs) |
 | resume builder / resume ai | 9–10 | Not targeted: crowded |
 | ai writer / paraphrase | 7 | Not targeted: crowded |
 
