@@ -13,8 +13,8 @@ MARKETING CONTENT
 
 INVOICES, ESTIMATES AND ADMIN
 • Invoice & Estimate: type your job notes ("3 sessions at $250, $40 travel, net 15") and get a clean invoice or estimate with line items and totals. Works as a simple invoice maker for contractors, cleaners, consultants and freelancers.
-• Expense Log: paste messy expenses or receipt details and get a categorized expense list with totals per category.
-• Contract Check: paste a contract and get a plain-English summary, key dates and payments, and the clauses worth questioning before you sign. Not legal advice.
+• Expense Log: snap your receipts or paste messy expenses and get a categorized expense list with totals per category.
+• Contract Check: photograph or paste a contract and get a plain-English summary, key dates and payments, and the clauses worth questioning before you sign. Not legal advice.
 
 GROW
 • Resume Tailor: compare your resume to a job post, see an ATS-style match score and missing keywords, and get a tailored version that never invents experience.
@@ -22,6 +22,7 @@ GROW
 
 WHY OWNERS USE IT
 • Built for real tasks, not a blank chat box. Each tool asks for exactly what it needs.
+• Skip the typing. Snap a photo with your camera, pick screenshots from your gallery, or upload a text file, and the text drops right in.
 • Your voice, every time. Save your tone and the things you never want to promise.
 • See the time you get back. Each run shows an estimate of the minutes saved, and your Activity tab keeps a running total.
 • Copy or share any result in one tap.
@@ -29,7 +30,8 @@ WHY OWNERS USE IT
 PRIVATE BY DESIGN
 • No account or sign-up needed to start.
 • Your business details and history stay on your phone.
-• What you type into a tool is sent to TreasureRate only to generate that result.
+• Text in your photos is read on your phone. The photos themselves are never uploaded.
+• What you enter into a tool is sent to TreasureRate only to generate that result.
 • Delete all your data from the app at any time.
 
 GOOD TO KNOW

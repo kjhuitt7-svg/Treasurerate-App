@@ -17,10 +17,16 @@
         "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
-      "permissions": [],
+      "permissions": ["android.permission.CAMERA"],
       "blockedPermissions": [
         "android.permission.RECORD_AUDIO",
-        "android.permission.SYSTEM_ALERT_WINDOW"
+        "android.permission.SYSTEM_ALERT_WINDOW",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.READ_MEDIA_IMAGES",
+        "android.permission.READ_MEDIA_VIDEO",
+        "android.permission.READ_MEDIA_AUDIO",
+        "android.permission.READ_MEDIA_VISUAL_USER_SELECTED"
       ],
       "predictiveBackGestureEnabled": false
     },
@@ -40,6 +46,14 @@
           "backgroundColor": "#0B0B0D",
           "image": "./assets/images/splash-icon.png",
           "imageWidth": 140
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "TreasureRate reads text from the photos you pick so you don't have to type it.",
+          "cameraPermission": "TreasureRate uses the camera to snap documents, receipts and notes and read the text from them.",
+          "microphonePermission": false
         }
       ]
     ],

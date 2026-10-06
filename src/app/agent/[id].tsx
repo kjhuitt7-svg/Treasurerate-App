@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Alert, KeyboardAvoidingView, Linking, Platform, ScrollView, Share, StyleSheet, Text, View } from 'react-native';
 import Markdown from 'react-native-markdown-display';
 
+import { InputSources } from '@/components/InputSources';
 import { Button, Card, Field, IconBadge, type IconName } from '@/components/ui';
 import { C, R, S } from '@/constants/theme';
 import { RunError, runAgent } from '@/lib/api';
@@ -92,15 +93,27 @@ export default function AgentScreen() {
         ) : null}
 
         {agent.fields.map((f) => (
-          <Field
-            key={f.key}
-            testID={`field-${f.key}`}
-            label={f.label}
-            placeholder={f.placeholder}
-            multiline={f.multiline}
-            value={values[f.key] ?? ''}
-            onChangeText={(t) => setValues((v) => ({ ...v, [f.key]: t }))}
-          />
+          <View key={f.key} style={{ gap: S.md }}>
+            <Field
+              testID={`field-${f.key}`}
+              label={f.label}
+              placeholder={f.placeholder}
+              multiline={f.multiline}
+              value={values[f.key] ?? ''}
+              onChangeText={(t) => setValues((v) => ({ ...v, [f.key]: t }))}
+            />
+            {f.multiline ? (
+              <InputSources
+                testID={`sources-${f.key}`}
+                onText={(t) =>
+                  setValues((v) => {
+                    const cur = v[f.key]?.trim();
+                    return { ...v, [f.key]: cur ? `${cur}\n\n${t}` : t };
+                  })
+                }
+              />
+            ) : null}
+          </View>
         ))}
 
         <Button
