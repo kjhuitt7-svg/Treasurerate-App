@@ -70,15 +70,15 @@ FW, FH = 1024, 500
 fg = background((FW, FH), 250, 250, 240, strength=55)
 fg.alpha_composite(gem_layer((FW, FH), 250, 250, 0.5))
 d = ImageDraw.Draw(fg)
-title = ImageFont.truetype("/usr/share/fonts/truetype/liberation/LiberationSerif-Bold.ttf", 84)
-sub = ImageFont.truetype("/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf", 32)
-tag = ImageFont.truetype("/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf", 20)
+F = "/usr/share/fonts/truetype/liberation/"
+title = ImageFont.truetype(F + "LiberationSerif-Bold.ttf", 96)
+sub = ImageFont.truetype(F + "LiberationSans-Regular.ttf", 34)
+tag = ImageFont.truetype(F + "LiberationSans-Bold.ttf", 22)
 x = 470
-lines = ["Your AI back office"]
-sub = ImageFont.truetype("/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf", 44)
-d.text((x, 145), "POWER PACK", font=tag, fill=GOLD)
-d.text((x - 4, 175), "TreasureRate", font=title, fill=(245, 242, 234))
-d.line([(x, 285), (x + 70, 285)], fill=GOLD, width=3)
+lines = ["The AI Power Stack for", "solo business owners"]
+d.text((x, 130), "T R E A S U R E R A T E", font=tag, fill=GOLD)
+d.text((x - 4, 160), "Back Office", font=title, fill=(245, 242, 234))
+d.line([(x, 278), (x + 70, 278)], fill=GOLD, width=3)
 for i, line in enumerate(lines):
-    d.text((x, 305 + i * 52), line, font=sub, fill=(232, 226, 212))
+    d.text((x, 298 + i * 44), line, font=sub, fill=(232, 226, 212))
 fg.convert("RGB").save(R + "store/play-feature-graphic-1024x500.png", optimize=True)
