@@ -1,6 +1,6 @@
 # TreasureRate Power Pack (Android)
 
-Ten AI agents for solo business owners and side hustlers, built on the TreasureRate agent backend.
+Ten AI agents for solo business owners, freelancers and side hustlers, built on the TreasureRate agent backend.
 
 - Expo SDK 57, Expo Router
 - No sign-in in v1: business profile and run history are stored on the device only

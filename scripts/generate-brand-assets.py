@@ -74,7 +74,7 @@ title = ImageFont.truetype("/usr/share/fonts/truetype/liberation/LiberationSerif
 sub = ImageFont.truetype("/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf", 32)
 tag = ImageFont.truetype("/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf", 20)
 x = 470
-lines = ["10 AI agents for solo business owners", "and side hustlers"]
+lines = ["10 AI agents for solo business owners,", "freelancers and side hustlers"]
 sub = ImageFont.truetype("/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf", 28)
 d.text((x, 130), "POWER PACK", font=tag, fill=GOLD)
 d.text((x - 4, 160), "TreasureRate", font=title, fill=(245, 242, 234))
