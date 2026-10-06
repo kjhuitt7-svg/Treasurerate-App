@@ -18,7 +18,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Power Pack',
+          title: 'Power Stack',
           tabBarLabel: 'Agents',
           tabBarIcon: ({ color, size }) => <Ionicons name="flash-outline" size={size} color={color} />,
         }}

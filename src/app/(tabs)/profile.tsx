@@ -79,7 +79,7 @@ export default function ProfileScreen() {
           </View>
           <Button label="Delete all my data" icon="trash-outline" variant="secondary" onPress={onClear} />
         </View>
-        <Text style={st.version}>TreasureRate {Constants.expoConfig?.version ?? ''}</Text>
+        <Text style={st.version}>TreasureRate Back Office {Constants.expoConfig?.version ?? ''}</Text>
       </ScrollView>
     </KeyboardAvoidingView>
   );
