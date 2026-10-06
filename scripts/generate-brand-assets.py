@@ -74,11 +74,11 @@ title = ImageFont.truetype("/usr/share/fonts/truetype/liberation/LiberationSerif
 sub = ImageFont.truetype("/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf", 32)
 tag = ImageFont.truetype("/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf", 20)
 x = 470
-lines = ["10 AI agents for solo business owners,", "freelancers and side hustlers"]
-sub = ImageFont.truetype("/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf", 28)
-d.text((x, 130), "POWER PACK", font=tag, fill=GOLD)
-d.text((x - 4, 160), "TreasureRate", font=title, fill=(245, 242, 234))
-d.line([(x, 270), (x + 70, 270)], fill=GOLD, width=3)
+lines = ["Your AI back office"]
+sub = ImageFont.truetype("/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf", 44)
+d.text((x, 145), "POWER PACK", font=tag, fill=GOLD)
+d.text((x - 4, 175), "TreasureRate", font=title, fill=(245, 242, 234))
+d.line([(x, 285), (x + 70, 285)], fill=GOLD, width=3)
 for i, line in enumerate(lines):
-    d.text((x, 292 + i * 38), line, font=sub, fill=(161, 157, 148))
+    d.text((x, 305 + i * 52), line, font=sub, fill=(232, 226, 212))
 fg.convert("RGB").save(R + "store/play-feature-graphic-1024x500.png", optimize=True)
