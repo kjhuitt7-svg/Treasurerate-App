@@ -1,4 +1,4 @@
-TreasureRate is an AI business assistant for solo owners, freelancers and small teams. Ten focused tools handle the writing and admin that eat your week: invoices and estimates, receipts and expenses, customer replies, Google review responses, social posts, contracts and more.
+TreasureRate Back Office is an AI business assistant for solo owners, freelancers and small teams. Ten focused tools handle the writing and admin that eat your week: invoices and estimates, receipts and expenses, customer replies, Google review responses, social posts, contracts and more.
 
 Tell it about your business once. Every tool uses your name, services, prices and tone, so results come back ready to send instead of full of blanks.
 
