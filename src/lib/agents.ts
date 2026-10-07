@@ -187,7 +187,8 @@ export function profileBlock(p: BusinessProfile) {
 }
 
 export function buildInput(agent: Agent, values: Record<string, string>, profile: BusinessProfile) {
-  const parts = [`TASK: ${agent.task}`];
+  const today = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+  const parts = [`TASK: ${agent.task}`, `TODAY'S DATE: ${today}. Use it for any dates, due dates or schedules.`];
   const biz = profileBlock(profile);
   if (biz) parts.push(`BUSINESS DETAILS (use these instead of placeholders):\n${biz}`);
   for (const f of agent.fields) {
