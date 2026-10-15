@@ -150,7 +150,7 @@ export default function AgentScreen() {
 }
 
 const st = StyleSheet.create({
-  wrap: { padding: S.lg, gap: S.lg, paddingBottom: S.xxl * 2 },
+  wrap: { width: '100%', maxWidth: 720, alignSelf: 'center', padding: S.lg, gap: S.lg, paddingBottom: S.xxl * 2 },
   center: { flex: 1, alignItems: 'center', justifyContent: 'center' },
   muted: { color: C.muted },
   head: { flexDirection: 'row', alignItems: 'center', gap: S.md },

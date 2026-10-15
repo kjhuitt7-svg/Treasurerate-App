@@ -61,7 +61,7 @@ export default function ActivityScreen() {
 }
 
 const st = StyleSheet.create({
-  wrap: { padding: S.lg, gap: S.sm, paddingBottom: S.xxl * 2 },
+  wrap: { width: '100%', maxWidth: 720, alignSelf: 'center', padding: S.lg, gap: S.sm, paddingBottom: S.xxl * 2 },
   total: { color: C.gold, fontWeight: '700', marginBottom: S.sm },
   rowTop: { flexDirection: 'row', justifyContent: 'space-between' },
   name: { color: C.text, fontWeight: '700', fontSize: 15 },

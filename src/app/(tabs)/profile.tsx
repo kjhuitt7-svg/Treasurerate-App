@@ -86,7 +86,7 @@ export default function ProfileScreen() {
 }
 
 const st = StyleSheet.create({
-  wrap: { padding: S.lg, gap: S.lg, paddingBottom: S.xxl * 2 },
+  wrap: { width: '100%', maxWidth: 720, alignSelf: 'center', padding: S.lg, gap: S.lg, paddingBottom: S.xxl * 2 },
   lead: { color: C.muted, fontSize: 14, lineHeight: 20 },
   block: { gap: S.md, marginTop: S.lg },
   body: { color: C.muted, fontSize: 13, lineHeight: 19 },

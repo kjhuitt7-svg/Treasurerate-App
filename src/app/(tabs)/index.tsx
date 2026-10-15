@@ -65,7 +65,7 @@ export default function AgentsScreen() {
 }
 
 const st = StyleSheet.create({
-  wrap: { padding: S.lg, gap: S.xl, paddingBottom: S.xxl * 2 },
+  wrap: { width: '100%', maxWidth: 720, alignSelf: 'center', padding: S.lg, gap: S.xl, paddingBottom: S.xxl * 2 },
   hero: { backgroundColor: C.goldSoft, borderColor: 'rgba(212,175,55,0.35)', gap: S.xs },
   heroLabel: { color: C.muted, fontSize: 13, fontWeight: '600' },
   heroValue: { color: C.gold, fontSize: 40, fontWeight: '800', letterSpacing: -1 },
