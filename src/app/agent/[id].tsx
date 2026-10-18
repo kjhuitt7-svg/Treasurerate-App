@@ -9,12 +9,15 @@ import { Button, Card, Field, IconBadge, type IconName } from '@/components/ui';
 import { C, R, S } from '@/constants/theme';
 import { RunError, runAgent } from '@/lib/api';
 import { buildInput, formatMinutes, getAgent } from '@/lib/agents';
+import { creditCost } from '@/lib/billing';
 import { profileFilled, useStore } from '@/lib/store';
+import { useWallet } from '@/lib/wallet';
 
 export default function AgentScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const agent = getAgent(String(id));
   const { profile, addRun } = useStore();
+  const wallet = useWallet();
   const [values, setValues] = useState<Record<string, string>>({});
   const [output, setOutput] = useState('');
   const [running, setRunning] = useState(false);
@@ -37,6 +40,12 @@ export default function AgentScreen() {
 
   async function onRun() {
     if (!agent || missing.length) return;
+    const cost = creditCost(agent);
+    const paid = await wallet.charge(cost);
+    if (!paid) {
+      router.push({ pathname: '/paywall', params: { need: String(cost) } });
+      return;
+    }
     setError(null);
     setOutput('');
     setCopied(false);
@@ -54,6 +63,8 @@ export default function AgentScreen() {
       });
       setTimeout(() => scroll.current?.scrollToEnd({ animated: true }), 50);
     } catch (e) {
+      // A failed or cancelled run doesn't cost anything.
+      await wallet.refund(paid);
       if ((e as Error)?.name !== 'AbortError') {
         setError(e instanceof RunError ? e.message : 'Something went wrong. Please try again.');
       }
@@ -83,6 +94,13 @@ export default function AgentScreen() {
           <View style={{ flex: 1 }}>
             <Text style={st.tagline}>{agent.tagline}</Text>
             <Text style={st.saves}>Saves about {formatMinutes(agent.minutesSaved)} per run (est.)</Text>
+            {wallet.enabled ? (
+              <Text style={st.cost} testID="run-cost" onPress={() => router.push('/paywall')}>
+                {wallet.unlimited
+                  ? 'Unlimited runs on your plan'
+                  : `${creditCost(agent)} credit${creditCost(agent) === 1 ? '' : 's'} per run · ${wallet.freeLeft} free left today${wallet.credits ? ` · ${wallet.credits} purchased` : ''}`}
+              </Text>
+            ) : null}
           </View>
         </View>
 
@@ -156,6 +174,7 @@ const st = StyleSheet.create({
   head: { flexDirection: 'row', alignItems: 'center', gap: S.md },
   tagline: { color: C.text, fontSize: 16, fontWeight: '600' },
   saves: { color: C.gold, fontSize: 13, marginTop: 2 },
+  cost: { color: C.muted, fontSize: 12, marginTop: 2 },
   tip: { color: C.muted, fontSize: 13, backgroundColor: C.goldSoft, padding: S.md, borderRadius: R.md, overflow: 'hidden' },
   error: { color: C.danger, fontSize: 14 },
   actions: { flexDirection: 'row', gap: S.sm, flexWrap: 'wrap' },

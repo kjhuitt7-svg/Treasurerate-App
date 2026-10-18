@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 
 import { C } from '@/constants/theme';
 import { StoreProvider, useStore } from '@/lib/store';
+import { WalletProvider } from '@/lib/wallet';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -29,6 +30,7 @@ function Root() {
       }}>
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       <Stack.Screen name="agent/[id]" options={{ title: '' }} />
+      <Stack.Screen name="paywall" options={{ presentation: 'modal', title: 'Unlock every agent' }} />
     </Stack>
   );
 }
@@ -37,8 +39,10 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={theme}>
       <StoreProvider>
-        <StatusBar style="light" />
-        <Root />
+        <WalletProvider>
+          <StatusBar style="light" />
+          <Root />
+        </WalletProvider>
       </StoreProvider>
     </ThemeProvider>
   );
