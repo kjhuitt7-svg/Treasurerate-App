@@ -1,8 +1,10 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { Image } from 'expo-image';
 import type { ComponentProps, ReactNode } from 'react';
 import { ActivityIndicator, Pressable, StyleSheet, Text, TextInput, View, type TextInputProps, type ViewStyle } from 'react-native';
 
 import { C, R, S } from '@/constants/theme';
+import { HERO_IMAGES } from '@/lib/heroes';
 
 export type IconName = ComponentProps<typeof Ionicons>['name'];
 
@@ -84,6 +86,20 @@ export function IconBadge({ name, size = 22 }: { name: IconName; size?: number }
     <View style={styles.badge}>
       <Ionicons name={name} size={size} color={C.gold} />
     </View>
+  );
+}
+
+/** The agent's hero portrait, or its icon if no portrait exists. */
+export function HeroAvatar({ id, icon, size = 52, label }: { id: string; icon: IconName; size?: number; label?: string }) {
+  const src = HERO_IMAGES[id];
+  if (!src) return <IconBadge name={icon} />;
+  return (
+    <Image
+      source={src}
+      accessibilityLabel={label}
+      style={{ width: size, height: size, borderRadius: size / 2, borderWidth: 1.5, borderColor: C.gold }}
+      contentFit="cover"
+    />
   );
 }
 

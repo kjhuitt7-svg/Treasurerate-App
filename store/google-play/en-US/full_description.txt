@@ -1,10 +1,12 @@
-TreasureRate Back Office is an AI business assistant for solo owners, freelancers and small teams. Ten focused tools handle the writing and admin that eat your week: invoices and estimates, receipts and expenses, customer replies, Google review responses, social posts, contracts and more.
+TreasureRate Back Office is an AI business assistant for solo owners, freelancers and small teams. Fifteen AI agents, each a character from the TreasureRate guilds, handle the writing and admin that eat your week: invoices and estimates, receipts and expenses, customer replies, Google review responses, social posts, contracts, payment reminders, job posts and more.
 
 Tell it about your business once. Every tool uses your name, services, prices and tone, so results come back ready to send instead of full of blanks.
 
 REPLY TO CUSTOMERS AND REVIEWS
 • Reply Writer: paste a customer message and get a clear, friendly reply in your voice.
 • Review Responder: reply to Google, Yelp and Facebook reviews. It thanks happy customers by name, and for bad reviews it writes a calm public response plus a private follow-up.
+• Meeting Notes: turn messy call or meeting notes into a summary, action items with owners, and a follow-up message.
+• Quote Follow-Up: a friendly nudge for an estimate that went quiet, plus a second follow-up for later.
 
 MARKETING CONTENT
 • Social Week: turn one idea or offer into five social media posts with captions and hashtags for Instagram, Facebook and LinkedIn.
@@ -13,18 +15,21 @@ MARKETING CONTENT
 
 INVOICES, ESTIMATES AND ADMIN
 • Invoice & Estimate: type your job notes ("3 sessions at $250, $40 travel, net 15") and get a clean invoice or estimate with line items and totals. Works as a simple invoice maker for contractors, cleaners, consultants and freelancers.
+• Payment Reminder: three reminders for an overdue invoice, from friendly to final notice.
 • Expense Log: snap your receipts or paste messy expenses and get a categorized expense list with totals per category.
 • Contract Check: photograph or paste a contract and get a plain-English summary, key dates and payments, and the clauses worth questioning before you sign. Not legal advice.
+• Policy Writer: turn your rules into a clear cancellation, refund or late-payment policy. A template, not legal advice.
 
 GROW
 • Resume Tailor: compare your resume to a job post, see an ATS-style match score and missing keywords, and get a tailored version that never invents experience.
+• Job Post Writer: turn hiring notes into an inclusive job ad with screening questions.
 • Listing Writer: turn property facts into a real estate listing description and social posts, written with fair-housing language in mind.
 
 WHY OWNERS USE IT
-• Built for real tasks, not a blank chat box. Each tool asks for exactly what it needs.
+• Built for real tasks, not a blank chat box.
 • Skip the typing. Snap a photo with your camera, pick screenshots from your gallery, or upload a text file, and the text drops right in.
 • Your voice, every time. Save your tone and the things you never want to promise.
-• See the time you get back. Each run shows an estimate of the minutes saved, and your Activity tab keeps a running total.
+• See the time you get back: every run shows an estimate of the minutes saved.
 • Copy or share any result in one tap.
 
 FREE TO START, PRICED BY THE HOURS IT SAVES
@@ -40,6 +45,6 @@ PRIVATE BY DESIGN
 • Delete all your data from the app at any time.
 
 GOOD TO KNOW
-Results are AI-generated. Review anything before you send, post or sign it. Contract Check and Expense Log help you organize and understand; they are not legal, tax or accounting advice. Use the Report button on any result to flag a problem.
+Results are AI-generated. Review anything before you send, post or sign it. Contract Check and Expense Log help you organize and understand; they are not legal, tax or accounting advice. Tap Report on any result to flag a problem.
 
 TreasureRate is made by Driftwood Brands LLC in San Jose, California. Questions or ideas: support@treasurerate.com
