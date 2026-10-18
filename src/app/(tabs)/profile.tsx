@@ -1,10 +1,13 @@
 import Constants from 'expo-constants';
+import { router } from 'expo-router';
 import { useState } from 'react';
 import { Alert, KeyboardAvoidingView, Linking, Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { Button, Field, SectionTitle } from '@/components/ui';
 import { C, LINKS, S } from '@/constants/theme';
+import { MANAGE_SUBSCRIPTIONS_URL } from '@/lib/billing';
 import { useStore, type BusinessProfile } from '@/lib/store';
+import { useWallet } from '@/lib/wallet';
 
 const FIELDS: { key: keyof BusinessProfile; label: string; placeholder: string; multiline?: boolean }[] = [
   { key: 'name', label: 'Business name', placeholder: 'e.g. Bright Day Cleaning' },
@@ -18,6 +21,7 @@ const FIELDS: { key: keyof BusinessProfile; label: string; placeholder: string; 
 
 export default function ProfileScreen() {
   const { profile, saveProfile, clearAll } = useStore();
+  const wallet = useWallet();
   const [draft, setDraft] = useState(profile);
   const [saved, setSaved] = useState(false);
   const [synced, setSynced] = useState(profile);
@@ -59,6 +63,29 @@ export default function ProfileScreen() {
           />
         ))}
         <Button testID="save-profile" label={saved ? 'Saved' : 'Save'} icon={saved ? 'checkmark' : 'save-outline'} onPress={onSave} disabled={!dirty && !saved} />
+
+        {wallet.enabled ? (
+          <View style={st.block}>
+            <SectionTitle>Plan & credits</SectionTitle>
+            <Text style={st.body} testID="plan-status">
+              {wallet.subscribed
+                ? 'Your plan is active: every agent, unlimited runs.'
+                : wallet.dayPassActive
+                  ? `Day pass active until ${new Date(wallet.dayPassUntil).toLocaleString([], { weekday: 'short', hour: 'numeric', minute: '2-digit' })}.`
+                  : `Free plan: ${wallet.freeLeft} free credits left today · ${wallet.credits} purchased credit${wallet.credits === 1 ? '' : 's'}.`}
+            </Text>
+            {wallet.subscribed ? (
+              <Button
+                label="Manage subscription"
+                icon="card-outline"
+                variant="secondary"
+                onPress={() => Linking.openURL(wallet.managementURL ?? MANAGE_SUBSCRIPTIONS_URL!)}
+              />
+            ) : (
+              <Button testID="open-paywall" label="See plans & credits" icon="flash" onPress={() => router.push('/paywall')} />
+            )}
+          </View>
+        ) : null}
 
         <View style={st.block}>
           <SectionTitle>Privacy</SectionTitle>
