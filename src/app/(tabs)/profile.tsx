@@ -1,7 +1,7 @@
 import Constants from 'expo-constants';
 import { router } from 'expo-router';
 import { useState } from 'react';
-import { Alert, KeyboardAvoidingView, Linking, Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Alert, Image, KeyboardAvoidingView, Linking, Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { Button, Field, SectionTitle } from '@/components/ui';
 import { C, LINKS, S } from '@/constants/theme';
@@ -107,6 +107,10 @@ export default function ProfileScreen() {
           <Button label="Delete all my data" icon="trash-outline" variant="secondary" onPress={onClear} />
         </View>
         <Text style={st.version}>TreasureRate Back Office {Constants.expoConfig?.version ?? ''}</Text>
+        <View style={st.credit}>
+          <Image source={require('../../../assets/images/claude-avatar.png')} style={st.creditAvatar} accessibilityIgnoresInvertColors />
+          <Text style={st.version}>Built with help from Claude</Text>
+        </View>
       </ScrollView>
     </KeyboardAvoidingView>
   );
@@ -120,4 +124,6 @@ const st = StyleSheet.create({
   links: { flexDirection: 'row', gap: S.xl },
   link: { color: C.gold, fontWeight: '700' },
   version: { color: C.faint, fontSize: 12, textAlign: 'center' },
+  credit: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: S.sm, marginTop: -S.sm },
+  creditAvatar: { width: 18, height: 18, borderRadius: 9 },
 });
