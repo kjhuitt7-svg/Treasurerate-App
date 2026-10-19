@@ -2,7 +2,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { router } from 'expo-router';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
-import { Card, IconBadge, SectionTitle, type IconName } from '@/components/ui';
+import { Card, HeroAvatar, SectionTitle, type IconName } from '@/components/ui';
 import { C, R, S } from '@/constants/theme';
 import { AGENTS, GROUPS, formatMinutes } from '@/lib/agents';
 import { profileFilled, useStore } from '@/lib/store';
@@ -44,13 +44,14 @@ export default function AgentsScreen() {
               key={a.id}
               testID={`agent-${a.id}`}
               accessibilityRole="button"
-              accessibilityLabel={`${a.name}. ${a.tagline}`}
+              accessibilityLabel={`${a.hero}, ${a.name}. ${a.tagline}`}
               onPress={() => router.push({ pathname: '/agent/[id]', params: { id: a.id } })}
               style={({ pressed }) => pressed && { opacity: 0.8 }}>
               <Card style={st.row}>
-                <IconBadge name={a.icon as IconName} />
+                <HeroAvatar id={a.id} icon={a.icon as IconName} />
                 <View style={{ flex: 1, gap: 2 }}>
-                  <Text style={st.name}>{a.name}</Text>
+                  <Text style={st.name}>{a.hero}</Text>
+                  <Text style={st.job}>{a.name}</Text>
                   <Text style={st.tagline}>{a.tagline}</Text>
                 </View>
                 <Text style={st.saves}>~{formatMinutes(a.minutesSaved)}</Text>
@@ -75,6 +76,7 @@ const st = StyleSheet.create({
   nudgeBody: { color: C.muted, fontSize: 13 },
   row: { flexDirection: 'row', alignItems: 'center', gap: S.md, paddingVertical: S.md },
   name: { color: C.text, fontSize: 16, fontWeight: '700' },
+  job: { color: C.gold, fontSize: 13, fontWeight: '700' },
   tagline: { color: C.muted, fontSize: 13 },
   saves: { color: C.gold, fontSize: 12, fontWeight: '700', backgroundColor: C.goldSoft, paddingHorizontal: 8, paddingVertical: 4, borderRadius: R.pill, overflow: 'hidden' },
   foot: { color: C.faint, fontSize: 12, textAlign: 'center' },

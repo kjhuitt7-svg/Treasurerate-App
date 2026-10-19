@@ -1,6 +1,6 @@
 # TreasureRate Back Office (Android)
 
-The AI Power Stack: ten AI agents for solo business owners, freelancers and side hustlers, built on the TreasureRate agent backend.
+The AI Power Stack: fifteen AI agents for solo business owners, freelancers and side hustlers, built on the TreasureRate agent backend.
 
 Play Store title: "TreasureRate Back Office". Home-screen label: "Back Office" (set in `app.json`).
 

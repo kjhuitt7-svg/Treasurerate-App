@@ -5,7 +5,7 @@ import { Alert, KeyboardAvoidingView, Linking, Platform, ScrollView, Share, Styl
 import Markdown from 'react-native-markdown-display';
 
 import { InputSources } from '@/components/InputSources';
-import { Button, Card, Field, IconBadge, type IconName } from '@/components/ui';
+import { Button, Card, Field, HeroAvatar, type IconName } from '@/components/ui';
 import { C, R, S } from '@/constants/theme';
 import { RunError, runAgent } from '@/lib/api';
 import { buildInput, formatMinutes, getAgent } from '@/lib/agents';
@@ -56,7 +56,7 @@ export default function AgentScreen() {
       const first = agent.fields[0];
       await addRun({
         agentId: agent.id,
-        agentName: agent.name,
+        agentName: `${agent.hero} · ${agent.name}`,
         minutesSaved: agent.minutesSaved,
         preview: (values[first.key] ?? '').trim().slice(0, 80),
         output: text,
@@ -87,11 +87,12 @@ export default function AgentScreen() {
 
   return (
     <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
-      <Stack.Screen options={{ title: agent.name }} />
+      <Stack.Screen options={{ title: agent.hero }} />
       <ScrollView ref={scroll} contentContainerStyle={st.wrap} keyboardShouldPersistTaps="handled">
         <View style={st.head}>
-          <IconBadge name={agent.icon as IconName} size={26} />
+          <HeroAvatar id={agent.id} icon={agent.icon as IconName} size={72} label={agent.hero} />
           <View style={{ flex: 1 }}>
+            <Text style={st.job}>{agent.name}</Text>
             <Text style={st.tagline}>{agent.tagline}</Text>
             <Text style={st.saves}>Saves about {formatMinutes(agent.minutesSaved)} per run (est.)</Text>
             {wallet.enabled ? (
@@ -172,6 +173,7 @@ const st = StyleSheet.create({
   center: { flex: 1, alignItems: 'center', justifyContent: 'center' },
   muted: { color: C.muted },
   head: { flexDirection: 'row', alignItems: 'center', gap: S.md },
+  job: { color: C.gold, fontSize: 13, fontWeight: '800', letterSpacing: 0.5, textTransform: 'uppercase' },
   tagline: { color: C.text, fontSize: 16, fontWeight: '600' },
   saves: { color: C.gold, fontSize: 13, marginTop: 2 },
   cost: { color: C.muted, fontSize: 12, marginTop: 2 },

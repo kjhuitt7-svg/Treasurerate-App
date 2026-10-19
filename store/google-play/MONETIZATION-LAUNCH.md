@@ -12,7 +12,7 @@ The code ships **billing off**. It turns on only when `EXPO_PUBLIC_REVENUECAT_AN
 | Day pass | Unlimited runs for 24 hours, one-time |
 | Credit packs | 60 / 130 / 350 credits, never expire, one-time |
 
-Agent costs today: Reply Writer, Review Responder, Rewrite = 1 · Invoice & Estimate, Expense Log = 2 · Contract Check, Listing Writer, Resume Tailor = 3 · Social Week, Content Factory = 4.
+Agent costs today: Reply Writer, Review Responder, Rewrite, Quote Follow-Up = 1 · Invoice & Estimate, Expense Log, Meeting Notes, Payment Reminder = 2 · Contract Check, Listing Writer, Resume Tailor, Policy Writer, Job Post Writer = 3 · Social Week, Content Factory = 4.
 
 A failed or cancelled run refunds its credits. The paywall opens automatically when a run needs more credits than the user has, and from **Business → See plans & credits**.
 
