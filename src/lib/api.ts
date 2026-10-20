@@ -9,6 +9,16 @@ export class RunError extends Error {
 }
 
 /**
+ * Some agents wrap their whole answer in a ``` code fence, which would show raw ** marks
+ * instead of formatting. Strip one wrapping fence (also while the answer is still streaming).
+ */
+export function unfence(text: string) {
+  const open = /^\s*```[a-zA-Z]*[ \t]*\n/;
+  if (!open.test(text)) return text;
+  return text.replace(open, '').replace(/\n```\s*$/, '');
+}
+
+/**
  * Runs an agent on the TreasureRate backend and streams its text output.
  * onChunk receives the full text so far.
  */
@@ -39,7 +49,7 @@ export async function runAgent(
   let text = '';
   const reader = res.body?.getReader();
   if (!reader) {
-    text = await res.text();
+    text = unfence(await res.text());
     onChunk(text);
     return text;
   }
@@ -48,9 +58,9 @@ export async function runAgent(
     const { done, value } = await reader.read();
     if (done) break;
     text += decoder.decode(value, { stream: true });
-    onChunk(text);
+    onChunk(unfence(text));
   }
-  text += decoder.decode();
+  text = unfence(text + decoder.decode());
   onChunk(text);
   if (!text.trim()) throw new RunError('The agent returned an empty result. Please try again.');
   return text;
