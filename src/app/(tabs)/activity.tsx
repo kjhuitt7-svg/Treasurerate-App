@@ -6,6 +6,7 @@ import Markdown from 'react-native-markdown-display';
 import { Card } from '@/components/ui';
 import { C, S } from '@/constants/theme';
 import { formatMinutes } from '@/lib/agents';
+import { unfence } from '@/lib/api';
 import { useStore } from '@/lib/store';
 
 export default function ActivityScreen() {
@@ -50,7 +51,7 @@ export default function ActivityScreen() {
             ) : null}
             {open === item.id ? (
               <View style={st.out}>
-                <Markdown style={md}>{item.output}</Markdown>
+                <Markdown style={md}>{unfence(item.output)}</Markdown>
               </View>
             ) : null}
           </Card>
