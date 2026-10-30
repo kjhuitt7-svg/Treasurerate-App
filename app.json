@@ -3,7 +3,7 @@
     "name": "Back Office",
     "slug": "treasurerate",
     "owner": "driftwood-brands-llc",
-    "version": "1.0.2",
+    "version": "1.1.0",
     "orientation": "default",
     "icon": "./assets/images/icon.png",
     "scheme": "treasurerate",

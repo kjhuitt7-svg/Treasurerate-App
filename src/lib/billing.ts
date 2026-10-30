@@ -62,3 +62,12 @@ export const MANAGE_SUBSCRIPTIONS_URL = Platform.select({
   android: 'https://play.google.com/store/account/subscriptions?package=com.treasurerate.app',
   default: 'https://apps.apple.com/account/subscriptions',
 });
+
+/** Name of the store that handles payment on this device, for on-screen wording. */
+export const STORE_NAME = Platform.OS === 'ios' ? 'the App Store' : 'Google Play';
+
+/** Auto-renewal disclosure shown under the plans. Apple and Google each require store-specific wording. */
+export const RENEWAL_NOTICE =
+  Platform.OS === 'ios'
+    ? 'Payment is charged to your Apple ID at confirmation of purchase. Plans renew automatically at the price shown unless you cancel at least 24 hours before the end of the current period. Manage or cancel any time in your Apple ID account settings. Day passes and credit packs are one-time purchases. Credits and day passes are stored on this device.'
+    : 'Plans renew automatically at the price shown until you cancel. Cancel any time in Google Play at least 24 hours before the renewal date. Day passes and credit packs are one-time purchases. Credits and day passes are stored on this device.';
