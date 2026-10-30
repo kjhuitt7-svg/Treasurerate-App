@@ -1,4 +1,8 @@
 # Regenerates app icons, splash and Play Store graphics. Requires Pillow: python3 scripts/generate-brand-assets.py
+# NOTE (Oct 30, 2026): the app icon, Android adaptive layers, splash, favicon and
+# store/play-store-icon-512.png now come from the designed gold-diamond icon (rays + sparkles),
+# not from this script. Running it will overwrite them with the OLD flat diamond.
+# Only use it for the Play feature graphic section, or restore the new icon files afterwards.
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
 import os
 R = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..") + "/"
