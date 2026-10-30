@@ -6,7 +6,7 @@ import type { PurchasesPackage, PurchasesStoreProduct } from 'react-native-purch
 
 import { Button, Card, SectionTitle } from '@/components/ui';
 import { C, LINKS, R, S } from '@/constants/theme';
-import { DAY_PASS_ID, FREE_DAILY_CREDITS, creditsForProduct } from '@/lib/billing';
+import { DAY_PASS_ID, FREE_DAILY_CREDITS, RENEWAL_NOTICE, STORE_NAME, creditsForProduct } from '@/lib/billing';
 import { useWallet, type Catalog } from '@/lib/wallet';
 
 const PLAN_COPY: Record<string, { name: string; per: string; note?: string }> = {
@@ -36,7 +36,7 @@ export default function Paywall() {
         Alert.alert('You are all set', done, [{ text: 'OK', onPress: () => router.back() }]);
       }
     } catch {
-      Alert.alert('Purchase not completed', 'Google Play could not finish the purchase. You were not charged. Please try again.');
+      Alert.alert('Purchase not completed', `${STORE_NAME.charAt(0).toUpperCase()}${STORE_NAME.slice(1)} could not finish the purchase. You were not charged. Please try again.`);
     } finally {
       setBusy(null);
     }
@@ -85,7 +85,7 @@ export default function Paywall() {
 
       {!catalog && !failed ? <ActivityIndicator color={C.gold} style={{ marginTop: S.xl }} /> : null}
       {failed ? (
-        <Text style={st.err}>Couldn&apos;t load prices from Google Play. Check your connection and reopen this screen.</Text>
+        <Text style={st.err}>Couldn&apos;t load prices from {STORE_NAME}. Check your connection and reopen this screen.</Text>
       ) : null}
 
       {catalog?.plans.length ? (
@@ -145,10 +145,7 @@ export default function Paywall() {
 
       <Button label="Restore purchases" icon="refresh" variant="ghost" onPress={onRestore} loading={busy === 'restore'} disabled={Boolean(busy)} />
 
-      <Text style={st.legal}>
-        Plans renew automatically at the price shown until you cancel. Cancel any time in Google Play at least 24 hours before
-        the renewal date. Day passes and credit packs are one-time purchases. Credits and day passes are stored on this device.
-      </Text>
+      <Text style={st.legal}>{RENEWAL_NOTICE}</Text>
       <View style={st.links}>
         <Text style={st.link} onPress={() => Linking.openURL(LINKS.terms)}>
           Terms
