@@ -37,7 +37,12 @@ export default function ActivityScreen() {
         </Text>
       }
       renderItem={({ item }) => (
-        <Pressable onPress={() => setOpen(open === item.id ? null : item.id)} accessibilityRole="button">
+        <Pressable
+          onPress={() => setOpen(open === item.id ? null : item.id)}
+          accessibilityRole="button"
+          accessibilityLabel={`${item.agentName}, ${new Date(item.at).toLocaleString()}, about ${formatMinutes(item.minutesSaved)} saved`}
+          accessibilityHint={open === item.id ? 'Hides the result' : 'Shows the result'}
+          accessibilityState={{ expanded: open === item.id }}>
           <Card style={{ gap: S.xs }}>
             <View style={st.rowTop}>
               <Text style={st.name}>{item.agentName}</Text>

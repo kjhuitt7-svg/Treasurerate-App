@@ -20,6 +20,7 @@ export default function TabLayout() {
         options={{
           title: 'Power Stack',
           tabBarLabel: 'Agents',
+          tabBarAccessibilityLabel: 'Agents',
           tabBarIcon: ({ color, size }) => <Ionicons name="flash-outline" size={size} color={color} />,
         }}
       />
@@ -27,6 +28,7 @@ export default function TabLayout() {
         name="activity"
         options={{
           title: 'Activity',
+          tabBarAccessibilityLabel: 'Activity, your past runs',
           tabBarIcon: ({ color, size }) => <Ionicons name="time-outline" size={size} color={color} />,
         }}
       />
@@ -35,6 +37,7 @@ export default function TabLayout() {
         options={{
           title: 'My Business',
           tabBarLabel: 'Business',
+          tabBarAccessibilityLabel: 'My Business details',
           tabBarIcon: ({ color, size }) => <Ionicons name="storefront-outline" size={size} color={color} />,
         }}
       />

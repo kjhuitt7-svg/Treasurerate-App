@@ -13,7 +13,10 @@ export default function AgentsScreen() {
 
   return (
     <ScrollView contentContainerStyle={st.wrap}>
-      <Card style={st.hero}>
+      <Card
+        style={st.hero}
+        accessible
+        accessibilityLabel={`Time saved so far, estimated: ${formatMinutes(saved)}. ${runs.length === 0 ? 'Run your first agent to start the count.' : `Across ${runs.length} run${runs.length === 1 ? '' : 's'}`}`}>
         <Text style={st.heroLabel}>Time saved so far (est.)</Text>
         <Text style={st.heroValue} testID="hours-saved">
           {formatMinutes(saved)}
@@ -24,7 +27,11 @@ export default function AgentsScreen() {
       </Card>
 
       {!profileFilled(profile) ? (
-        <Pressable onPress={() => router.push('/profile')} accessibilityRole="button">
+        <Pressable
+          onPress={() => router.push('/profile')}
+          accessibilityRole="button"
+          accessibilityLabel="Tell us about your business. Every agent uses it, so results come back ready to use."
+          accessibilityHint="Opens My Business">
           <Card style={st.nudge}>
             <Ionicons name="storefront-outline" size={20} color={C.gold} />
             <View style={{ flex: 1 }}>
@@ -44,7 +51,8 @@ export default function AgentsScreen() {
               key={a.id}
               testID={`agent-${a.id}`}
               accessibilityRole="button"
-              accessibilityLabel={`${a.hero}, ${a.name}. ${a.tagline}`}
+              accessibilityLabel={`${a.hero}, ${a.name}. ${a.tagline}. Saves about ${formatMinutes(a.minutesSaved)} per run.`}
+              accessibilityHint="Opens this agent"
               onPress={() => router.push({ pathname: '/agent/[id]', params: { id: a.id } })}
               style={({ pressed }) => pressed && { opacity: 0.8 }}>
               <Card style={st.row}>
