@@ -1,7 +1,7 @@
 import * as Clipboard from 'expo-clipboard';
 import { Stack, router, useLocalSearchParams } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
-import { Alert, KeyboardAvoidingView, Linking, Platform, ScrollView, Share, StyleSheet, Text, View } from 'react-native';
+import { AccessibilityInfo, Alert, KeyboardAvoidingView, Linking, Platform, ScrollView, Share, StyleSheet, Text, View } from 'react-native';
 import Markdown from 'react-native-markdown-display';
 
 import { InputSources } from '@/components/InputSources';
@@ -61,6 +61,7 @@ export default function AgentScreen() {
         preview: (values[first.key] ?? '').trim().slice(0, 80),
         output: text,
       });
+      AccessibilityInfo.announceForAccessibility(`${agent.hero} finished. Your result is ready below.`);
       setTimeout(() => scroll.current?.scrollToEnd({ animated: true }), 50);
     } catch (e) {
       // A failed or cancelled run doesn't cost anything.
@@ -96,7 +97,7 @@ export default function AgentScreen() {
             <Text style={st.tagline}>{agent.tagline}</Text>
             <Text style={st.saves}>Saves about {formatMinutes(agent.minutesSaved)} per run (est.)</Text>
             {wallet.enabled ? (
-              <Text style={st.cost} testID="run-cost" onPress={() => router.push('/paywall')}>
+              <Text style={st.cost} testID="run-cost" accessibilityRole="button" accessibilityHint="Opens plans and credits" onPress={() => router.push('/paywall')}>
                 {wallet.unlimited
                   ? 'Unlimited runs on your plan'
                   : `${creditCost(agent)} credit${creditCost(agent) === 1 ? '' : 's'} per run · ${wallet.freeLeft} free left today${wallet.credits ? ` · ${wallet.credits} purchased` : ''}`}
@@ -106,7 +107,7 @@ export default function AgentScreen() {
         </View>
 
         {!profileFilled(profile) ? (
-          <Text style={st.tip} onPress={() => router.push('/profile')}>
+          <Text style={st.tip} accessibilityRole="button" accessibilityHint="Opens My Business" onPress={() => router.push('/profile')}>
             Tip: add your business details first so results come back without placeholders. Tap to add.
           </Text>
         ) : null}
@@ -144,7 +145,11 @@ export default function AgentScreen() {
           disabled={missing.length > 0 || running}
         />
 
-        {error ? <Text style={st.error}>{error}</Text> : null}
+        {error ? (
+          <Text style={st.error} accessibilityRole="alert" accessibilityLiveRegion="polite">
+            {error}
+          </Text>
+        ) : null}
 
         {output ? (
           <Card style={{ gap: S.md }}>

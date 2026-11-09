@@ -1,15 +1,19 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image } from 'expo-image';
 import type { ComponentProps, ReactNode } from 'react';
-import { ActivityIndicator, Pressable, StyleSheet, Text, TextInput, View, type TextInputProps, type ViewStyle } from 'react-native';
+import { ActivityIndicator, Pressable, StyleSheet, Text, TextInput, View, type TextInputProps, type ViewProps, type ViewStyle } from 'react-native';
 
 import { C, R, S } from '@/constants/theme';
 import { HERO_IMAGES } from '@/lib/heroes';
 
 export type IconName = ComponentProps<typeof Ionicons>['name'];
 
-export function Card({ children, style }: { children: ReactNode; style?: ViewStyle }) {
-  return <View style={[styles.card, style]}>{children}</View>;
+export function Card({ children, style, ...rest }: ViewProps & { children: ReactNode; style?: ViewStyle }) {
+  return (
+    <View style={[styles.card, style]} {...rest}>
+      {children}
+    </View>
+  );
 }
 
 export function Button({
@@ -36,6 +40,7 @@ export function Button({
       testID={testID}
       accessibilityRole="button"
       accessibilityLabel={label}
+      accessibilityState={{ disabled: Boolean(disabled || loading), busy: Boolean(loading) }}
       onPress={onPress}
       disabled={disabled || loading}
       style={({ pressed }) => [
@@ -67,6 +72,8 @@ export function Field({
     <View style={{ gap: S.xs }}>
       <Text style={styles.label}>{label}</Text>
       <TextInput
+        accessibilityLabel={label}
+        accessibilityHint={hint}
         placeholderTextColor={C.faint}
         style={[styles.input, props.multiline && styles.inputMulti]}
         textAlignVertical={props.multiline ? 'top' : 'center'}
@@ -78,12 +85,16 @@ export function Field({
 }
 
 export function SectionTitle({ children }: { children: ReactNode }) {
-  return <Text style={styles.section}>{children}</Text>;
+  return (
+    <Text style={styles.section} accessibilityRole="header">
+      {children}
+    </Text>
+  );
 }
 
 export function IconBadge({ name, size = 22 }: { name: IconName; size?: number }) {
   return (
-    <View style={styles.badge}>
+    <View style={styles.badge} accessible={false} importantForAccessibility="no-hide-descendants">
       <Ionicons name={name} size={size} color={C.gold} />
     </View>
   );
@@ -96,6 +107,7 @@ export function HeroAvatar({ id, icon, size = 52, label }: { id: string; icon: I
   return (
     <Image
       source={src}
+      accessible={Boolean(label)}
       accessibilityLabel={label}
       style={{ width: size, height: size, borderRadius: size / 2, borderWidth: 1.5, borderColor: C.gold }}
       contentFit="cover"
@@ -122,7 +134,7 @@ export const styles = StyleSheet.create({
   },
   buttonPrimary: { backgroundColor: C.gold },
   buttonSecondary: { backgroundColor: C.cardHigh, borderWidth: StyleSheet.hairlineWidth, borderColor: C.border },
-  buttonGhost: { backgroundColor: 'transparent', minHeight: 40, paddingHorizontal: S.md },
+  buttonGhost: { backgroundColor: 'transparent', minHeight: 44, paddingHorizontal: S.md },
   buttonLabel: { fontSize: 16, fontWeight: '700' },
   label: { color: C.text, fontSize: 14, fontWeight: '600' },
   hint: { color: C.faint, fontSize: 12 },

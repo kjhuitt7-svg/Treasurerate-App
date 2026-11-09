@@ -70,7 +70,9 @@ export default function Paywall() {
       <Stack.Screen options={{ title: 'Unlock every agent', presentation: 'modal' }} />
 
       <View style={{ gap: S.sm }}>
-        <Text style={st.h1}>Priced by the hours it saves</Text>
+        <Text style={st.h1} accessibilityRole="header">
+          Priced by the hours it saves
+        </Text>
         <Text style={st.lead}>
           {need ? `This run needs ${need} credit${need === '1' ? '' : 's'}. ` : ''}
           You get {FREE_DAILY_CREDITS} free credits every day. Agents that save more time cost more credits per run (1–4). Any plan
@@ -147,10 +149,10 @@ export default function Paywall() {
 
       <Text style={st.legal}>{RENEWAL_NOTICE}</Text>
       <View style={st.links}>
-        <Text style={st.link} onPress={() => Linking.openURL(LINKS.terms)}>
+        <Text style={st.link} accessibilityRole="link" onPress={() => Linking.openURL(LINKS.terms)}>
           Terms
         </Text>
-        <Text style={st.link} onPress={() => Linking.openURL(LINKS.privacy)}>
+        <Text style={st.link} accessibilityRole="link" onPress={() => Linking.openURL(LINKS.privacy)}>
           Privacy Policy
         </Text>
       </View>
@@ -172,7 +174,8 @@ function Option(props: {
     <Pressable
       testID={props.testID}
       accessibilityRole="button"
-      accessibilityLabel={`${props.title}, ${props.price}`}
+      accessibilityLabel={`${props.title}, ${props.price}${props.sub ? `. ${props.sub}` : ''}${props.badge ? `. ${props.badge}` : ''}`}
+      accessibilityState={{ disabled: Boolean(props.disabled), busy: Boolean(props.busy) }}
       onPress={props.onPress}
       disabled={props.disabled}
       style={({ pressed }) => [pressed && { opacity: 0.8 }, props.disabled && !props.busy && { opacity: 0.5 }]}>

@@ -117,21 +117,23 @@ export function InputSources({ onText, testID }: { onText: (text: string) => voi
 
   return (
     <View style={st.row} testID={testID}>
-      <Chip label="Camera" icon="camera-outline" busy={busy === 'camera'} disabled={!!busy} onPress={onCamera} />
-      <Chip label="Photos" icon="images-outline" busy={busy === 'photos'} disabled={!!busy} onPress={onPhotos} />
-      <Chip label="Upload" icon="document-attach-outline" busy={busy === 'file'} disabled={!!busy} onPress={onFile} />
+      <Chip label="Camera" hint="Take a photo and read the text from it" icon="camera-outline" busy={busy === 'camera'} disabled={!!busy} onPress={onCamera} />
+      <Chip label="Photos" hint="Choose photos and read the text from them" icon="images-outline" busy={busy === 'photos'} disabled={!!busy} onPress={onPhotos} />
+      <Chip label="Upload" hint="Choose a text file or an image to read" icon="document-attach-outline" busy={busy === 'file'} disabled={!!busy} onPress={onFile} />
     </View>
   );
 }
 
 function Chip({
   label,
+  hint,
   icon,
   busy,
   disabled,
   onPress,
 }: {
   label: string;
+  hint: string;
   icon: keyof typeof Ionicons.glyphMap;
   busy: boolean;
   disabled: boolean;
@@ -140,7 +142,9 @@ function Chip({
   return (
     <Pressable
       accessibilityRole="button"
-      accessibilityLabel={`${label}: add text from ${label.toLowerCase()}`}
+      accessibilityLabel={busy ? `${label}, reading` : label}
+      accessibilityHint={hint}
+      accessibilityState={{ disabled, busy }}
       onPress={onPress}
       disabled={disabled}
       style={({ pressed }) => [st.chip, disabled && !busy && { opacity: 0.45 }, pressed && { opacity: 0.75 }]}>
@@ -156,7 +160,7 @@ const st = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: S.xs,
-    minHeight: 36,
+    minHeight: 44,
     paddingHorizontal: S.md,
     borderRadius: R.pill,
     backgroundColor: C.cardHigh,
