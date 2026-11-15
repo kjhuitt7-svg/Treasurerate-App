@@ -1,11 +1,11 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Stack, router, useLocalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
-import { ActivityIndicator, Alert, Linking, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Alert, Platform, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import type { PurchasesPackage, PurchasesStoreProduct } from 'react-native-purchases';
 
 import { Button, Card, SectionTitle } from '@/components/ui';
-import { C, LINKS, R, S } from '@/constants/theme';
+import { C, R, S } from '@/constants/theme';
 import { DAY_PASS_ID, FREE_DAILY_CREDITS, RENEWAL_NOTICE, STORE_NAME, creditsForProduct } from '@/lib/billing';
 import { useWallet, type Catalog } from '@/lib/wallet';
 
@@ -54,7 +54,7 @@ export default function Paywall() {
     setBusy('restore');
     try {
       const ok = await w.restore();
-      Alert.alert(ok ? 'Plan restored' : 'No active plan found', ok ? 'Every agent is unlocked.' : 'There is no active subscription on this Google account.');
+      Alert.alert(ok ? 'Plan restored' : 'No active plan found', ok ? 'Every agent is unlocked.' : 'There is no active subscription on this ' + (Platform.OS === 'ios' ? 'Apple' : 'Google') + ' account.');
     } catch {
       Alert.alert('Restore failed', 'Check your connection and try again.');
     } finally {
@@ -149,10 +149,10 @@ export default function Paywall() {
 
       <Text style={st.legal}>{RENEWAL_NOTICE}</Text>
       <View style={st.links}>
-        <Text style={st.link} accessibilityRole="link" onPress={() => Linking.openURL(LINKS.terms)}>
+        <Text style={st.link} accessibilityRole="link" onPress={() => router.push('/legal/terms')}>
           Terms
         </Text>
-        <Text style={st.link} accessibilityRole="link" onPress={() => Linking.openURL(LINKS.privacy)}>
+        <Text style={st.link} accessibilityRole="link" onPress={() => router.push('/legal/privacy')}>
           Privacy Policy
         </Text>
       </View>

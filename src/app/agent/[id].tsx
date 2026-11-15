@@ -13,10 +13,12 @@ import { creditCost } from '@/lib/billing';
 import { profileFilled, useStore } from '@/lib/store';
 import { useWallet } from '@/lib/wallet';
 
+const LEGAL_AGENTS = new Set(['contract-check', 'policy-writer']);
+
 export default function AgentScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const agent = getAgent(String(id));
-  const { profile, addRun } = useStore();
+  const { profile, addRun, consent } = useStore();
   const wallet = useWallet();
   const [values, setValues] = useState<Record<string, string>>({});
   const [output, setOutput] = useState('');
@@ -40,6 +42,10 @@ export default function AgentScreen() {
 
   async function onRun() {
     if (!agent || missing.length) return;
+    if (!consent) {
+      router.push('/consent');
+      return;
+    }
     const cost = creditCost(agent);
     const paid = await wallet.charge(cost);
     if (!paid) {
@@ -105,6 +111,12 @@ export default function AgentScreen() {
             ) : null}
           </View>
         </View>
+
+        {LEGAL_AGENTS.has(agent.id) ? (
+          <Text style={st.notice} accessibilityRole="text">
+            Not legal advice. For important agreements, consult a licensed attorney.
+          </Text>
+        ) : null}
 
         {!profileFilled(profile) ? (
           <Text style={st.tip} accessibilityRole="button" accessibilityHint="Opens My Business" onPress={() => router.push('/profile')}>
@@ -183,6 +195,7 @@ const st = StyleSheet.create({
   saves: { color: C.gold, fontSize: 13, marginTop: 2 },
   cost: { color: C.muted, fontSize: 12, marginTop: 2 },
   tip: { color: C.muted, fontSize: 13, backgroundColor: C.goldSoft, padding: S.md, borderRadius: R.md, overflow: 'hidden' },
+  notice: { color: C.muted, fontSize: 12, fontStyle: 'italic' },
   error: { color: C.danger, fontSize: 14 },
   actions: { flexDirection: 'row', gap: S.sm, flexWrap: 'wrap' },
   disclaimer: { color: C.faint, fontSize: 12 },
