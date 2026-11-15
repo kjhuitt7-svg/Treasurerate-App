@@ -18,6 +18,9 @@ export const S = { xs: 4, sm: 8, md: 12, lg: 16, xl: 24, xxl: 32 } as const;
 export const R = { sm: 8, md: 12, lg: 18, pill: 999 } as const;
 
 export const LINKS = {
+  /** Full text on the website (opened from the in-app legal screens). */
+  privacyWeb: 'https://www.treasurerate.com/privacy',
+  termsWeb: 'https://www.treasurerate.com/terms',
   privacy: 'https://www.treasurerate.com/privacy',
   terms: 'https://www.treasurerate.com/terms',
   support: 'mailto:support@treasurerate.com',

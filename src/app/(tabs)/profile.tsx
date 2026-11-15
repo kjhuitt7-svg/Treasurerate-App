@@ -90,14 +90,14 @@ export default function ProfileScreen() {
         <View style={st.block}>
           <SectionTitle>Privacy</SectionTitle>
           <Text style={st.body}>
-            Your details and history are stored only on this phone. When you run an agent, what you enter is sent to TreasureRate to
-            generate the result.
+            Your details and history are stored only on this phone. When you run an agent, the text you enter is sent to TreasureRate and its
+            third-party AI providers to generate the result.
           </Text>
           <View style={st.links}>
-            <Text style={st.link} onPress={() => Linking.openURL(LINKS.privacy)}>
+            <Text style={st.link} onPress={() => router.push('/legal/privacy')}>
               Privacy Policy
             </Text>
-            <Text style={st.link} onPress={() => Linking.openURL(LINKS.terms)}>
+            <Text style={st.link} onPress={() => router.push('/legal/terms')}>
               Terms
             </Text>
             <Text style={st.link} onPress={() => Linking.openURL(LINKS.support)}>

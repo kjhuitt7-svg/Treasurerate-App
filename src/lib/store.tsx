@@ -24,12 +24,16 @@ export type Run = {
 const EMPTY: BusinessProfile = { name: '', owner: '', services: '', location: '', contact: '', tone: '', avoid: '' };
 const K_PROFILE = 'tr.profile.v1';
 const K_RUNS = 'tr.runs.v1';
+const K_CONSENT = 'tr.aiConsent.v1';
 const MAX_RUNS = 100;
 
 type Ctx = {
   ready: boolean;
   profile: BusinessProfile;
   saveProfile: (p: BusinessProfile) => Promise<void>;
+  /** True once the user agreed to send their text to TreasureRate and its AI providers. */
+  consent: boolean;
+  giveConsent: () => Promise<void>;
   runs: Run[];
   addRun: (r: Omit<Run, 'id' | 'at'>) => Promise<void>;
   clearAll: () => Promise<void>;
@@ -42,11 +46,17 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const [ready, setReady] = useState(false);
   const [profile, setProfile] = useState<BusinessProfile>(EMPTY);
   const [runs, setRuns] = useState<Run[]>([]);
+  const [consent, setConsent] = useState(false);
 
   useEffect(() => {
     (async () => {
       try {
-        const [p, r] = await Promise.all([AsyncStorage.getItem(K_PROFILE), AsyncStorage.getItem(K_RUNS)]);
+        const [p, r, c] = await Promise.all([
+          AsyncStorage.getItem(K_PROFILE),
+          AsyncStorage.getItem(K_RUNS),
+          AsyncStorage.getItem(K_CONSENT),
+        ]);
+        if (c === '1') setConsent(true);
         if (p) setProfile({ ...EMPTY, ...JSON.parse(p) });
         if (r) setRuns(JSON.parse(r));
       } catch {
@@ -69,14 +79,20 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     await AsyncStorage.setItem(K_RUNS, JSON.stringify(next));
   };
 
+  const giveConsent = async () => {
+    setConsent(true);
+    await AsyncStorage.setItem(K_CONSENT, '1');
+  };
+
   const clearAll = async () => {
     setProfile(EMPTY);
     setRuns([]);
-    await AsyncStorage.multiRemove([K_PROFILE, K_RUNS]);
+    setConsent(false);
+    await AsyncStorage.multiRemove([K_PROFILE, K_RUNS, K_CONSENT]);
   };
 
   return (
-    <StoreCtx.Provider value={{ ready, profile, saveProfile, runs, addRun, clearAll }}>{children}</StoreCtx.Provider>
+    <StoreCtx.Provider value={{ ready, profile, saveProfile, consent, giveConsent, runs, addRun, clearAll }}>{children}</StoreCtx.Provider>
   );
 }
 
