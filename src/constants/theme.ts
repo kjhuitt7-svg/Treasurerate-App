@@ -19,8 +19,8 @@ export const R = { sm: 8, md: 12, lg: 18, pill: 999 } as const;
 
 export const LINKS = {
   /** Full text on the website (opened from the in-app legal screens). */
-  privacyWeb: 'https://www.treasurerate.com/privacy',
-  termsWeb: 'https://www.treasurerate.com/terms',
+  privacyWeb: 'https://www.treasurerate.com/privacy?embed=1',
+  termsWeb: 'https://www.treasurerate.com/terms?embed=1',
   privacy: 'https://www.treasurerate.com/privacy',
   terms: 'https://www.treasurerate.com/terms',
   support: 'mailto:support@treasurerate.com',

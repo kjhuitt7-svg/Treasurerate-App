@@ -187,7 +187,7 @@ export const AGENTS: Agent[] = [
     icon: 'people-outline',
     group: 'Customers',
     minutesSaved: 20,
-    task: 'Turn these meeting or call notes into: a 3 to 5 bullet summary; decisions made; action items as a table with owner and due date (write "not set" if none was given); and a short follow-up message to send to the other people. Use only what is in the notes.',
+    task: 'Turn these meeting or call notes into: a 3 to 5 bullet summary; decisions made; action items as a table with owner and due date; and a short follow-up message to send to the other people. Use only what is in the notes. Never invent owners, dates, names or decisions. If the notes do not name who is responsible for an action, write "Unassigned" in the owner column (do not assume it is the user or a team). If the notes do not give a date or deadline, write "No date set" and do not calculate one. In the follow-up message, do not mention any meeting date, deadline or next meeting unless it is written in the notes.',
     fields: [
       { key: 'notes', label: 'Notes or transcript', placeholder: 'Paste your notes, voice-memo text or transcript', multiline: true, required: true },
       { key: 'who', label: 'Who was there (optional)', placeholder: 'e.g. me, Sam from Acme' },
