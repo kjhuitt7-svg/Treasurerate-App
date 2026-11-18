@@ -21,7 +21,7 @@
   "submit": {
     "production": {
       "android": { "track": "internal", "releaseStatus": "draft" },
-      "ios": { "ascAppId": "6822269801" }
+      "ios": { "ascAppId": "6822269801", "metadataPath": "./store.config.js" }
     }
   }
 }
