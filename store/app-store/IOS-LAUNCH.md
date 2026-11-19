@@ -18,6 +18,16 @@ Bundle ID `com.treasurerate.app` · App Store Connect app ID `6822269801` (from 
 
 - Meeting Notes prompt (it can invent owners and dates from messy notes). Revisit before a wider push.
 
+## Upload the listing with one command
+
+`store.config.js` holds the App Store name, subtitle, promo text, keywords, iOS description, URLs, categories, age rating answers and App Review notes for version 1.1.1. From the project folder:
+
+```bash
+REVIEW_PHONE="+1 your number" npx eas-cli@latest metadata:push
+```
+
+It signs in to App Store Connect the same way `eas submit` does. It does not submit for review, and it leaves in-app purchases, App Privacy answers and screenshots alone. Answer the newer age rating questions (social media, shared location, dating) in App Store Connect, since EAS Metadata doesn't cover them yet. Without `REVIEW_PHONE` the review contact and notes are skipped.
+
 ## You do in App Store Connect
 
 1. **App Privacy labels.** Data collected, not linked to identity, not used for tracking: "User Content" (text sent to agents, app functionality) and "Purchases" (via RevenueCat). Add "Product Interaction" or "Diagnostics" only if you enable analytics. No sign-in, so no account data.
