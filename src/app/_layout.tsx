@@ -1,9 +1,10 @@
-import { DarkTheme, Stack, ThemeProvider } from 'expo-router';
+import { DarkTheme, Stack, ThemeProvider, usePathname } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 
 import { C } from '@/constants/theme';
+import { trackScreen } from '@/lib/analytics';
 import { StoreProvider, useStore } from '@/lib/store';
 import { WalletProvider } from '@/lib/wallet';
 
@@ -16,9 +17,13 @@ const theme = {
 
 function Root() {
   const { ready } = useStore();
+  const pathname = usePathname();
   useEffect(() => {
     if (ready) SplashScreen.hideAsync();
   }, [ready]);
+  useEffect(() => {
+    if (ready && pathname) trackScreen(pathname);
+  }, [ready, pathname]);
   if (!ready) return null;
   return (
     <Stack
