@@ -52,7 +52,7 @@ export async function runAgent(
         // Not JSON: treat as a plain rate limit.
       }
       if (serverError === 'free_limit_reached') {
-        throw new RunError('The TreasureRate server's daily limit was reached. Please try again later.', 429);
+        throw new RunError("The TreasureRate server's daily limit was reached. Please try again later.", 429);
       }
       throw new RunError('You are going a little fast. Wait a minute and try again.', 429);
     }
