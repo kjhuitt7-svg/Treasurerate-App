@@ -62,12 +62,16 @@ export const LEGAL: Record<'terms' | 'privacy', LegalDoc> = {
         body: 'Your text is used to produce your result and to run and secure the service. Content you submit to agents is not used to train TreasureRate\'s own AI models.',
       },
       {
+        heading: 'App analytics',
+        body: 'The app sends anonymous usage events to PostHog, our analytics provider: which screens you open, when the app opens or closes, the app version, device model, OS version, language and approximate location from your IP address. No name, email, business details or text you submit is included.',
+      },
+      {
         heading: 'Purchases',
         body: 'Google Play or the Apple App Store processes payment. RevenueCat receives an anonymous app ID, purchase details and approximate country to manage plans and credits.',
       },
       {
         heading: 'Sharing',
-        body: 'We do not sell your personal information. Data is shared only with service providers such as AI model providers, hosting and purchase providers, or when the law requires it.',
+        body: 'We do not sell your personal information. Data is shared only with service providers such as AI model providers, hosting, analytics and purchase providers, or when the law requires it.',
       },
       {
         heading: 'Delete your data',
