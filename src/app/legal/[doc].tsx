@@ -11,7 +11,7 @@ export default function LegalScreen() {
   const d = doc === 'privacy' ? LEGAL.privacy : LEGAL.terms;
   return (
     <ScrollView contentContainerStyle={st.wrap}>
-      <Stack.Screen options={{ title: d.title }} />
+      <Stack.Screen options={{ title: d.title, headerBackTitle: 'Back', headerBackButtonDisplayMode: 'minimal' }} />
       <Text style={st.title} accessibilityRole="header">
         {d.title}
       </Text>
