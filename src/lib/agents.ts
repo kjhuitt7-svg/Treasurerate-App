@@ -232,7 +232,7 @@ export const AGENTS: Agent[] = [
     icon: 'document-lock-outline',
     group: 'Admin',
     minutesSaved: 30,
-    task: 'Write a clear, customer-friendly policy for this business from the owner rules given. Use short headings and plain English. Add a one-paragraph version for a website or booking page. End with: "This is a template, not legal advice. Check local laws before you publish it."',
+    task: 'Write a clear, customer-friendly policy for this business from the owner rules given. Every rule the owner wrote must appear in the policy, worded politely but with its meaning kept. If a rule does not fit the policy type asked for (for example a dress code or a right to refuse service), put it under a short "House rules" heading instead of leaving it out. Use short headings and plain English. Add a one-paragraph version for a website or booking page. End with: "This is a template, not legal advice. Check local laws before you publish it."',
     fields: [
       { key: 'type', label: 'Which policy', placeholder: 'Cancellation, refund, late payment, no-show…', required: true },
       { key: 'rules', label: 'Your rules', placeholder: 'e.g. 24h notice or $50 fee, refunds within 7 days', multiline: true, required: true },
@@ -278,11 +278,18 @@ export function buildInput(agent: Agent, values: Record<string, string>, profile
   const today = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
   const parts = [`TASK: ${agent.task}`, `TODAY'S DATE: ${today}. Use it for any dates, due dates or schedules.`];
   const biz = profileBlock(profile);
-  if (biz) parts.push(`BUSINESS DETAILS (use these instead of placeholders):\n${biz}`);
+  if (biz) {
+    parts.push(
+      `BUSINESS DETAILS (use these instead of placeholders, but only where they fit this task. If the user's input is not about this business, do not add the business name, location or details to it):\n${biz}`,
+    );
+  }
   for (const f of agent.fields) {
     const v = values[f.key]?.trim();
     if (v) parts.push(`${f.label.replace(/ \(optional\)$/, '').toUpperCase()}:\n${v}`);
   }
+  parts.push(
+    'GROUND RULES: Use every instruction and fact the user gave above; do not drop any. Do not invent facts that are not given (names, prices, dates, places or policies). Where something needed is missing, leave a clear placeholder in [square brackets].',
+  );
   return parts.join('\n\n');
 }
 

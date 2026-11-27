@@ -29,10 +29,10 @@ function Root() {
         contentStyle: { backgroundColor: C.bg },
       }}>
       <Stack.Screen name="(tabs)" options={{ headerShown: false, title: 'Agents' }} />
-      <Stack.Screen name="agent/[id]" options={{ title: '', headerBackButtonDisplayMode: 'minimal' }} />
+      <Stack.Screen name="agent/[id]" options={{ title: '', headerBackTitle: 'Agents', headerBackButtonDisplayMode: 'minimal' }} />
       <Stack.Screen name="paywall" options={{ presentation: 'modal', title: 'Unlock every agent' }} />
       <Stack.Screen name="consent" options={{ presentation: 'modal', title: 'Before your first run' }} />
-      <Stack.Screen name="legal/[doc]" options={{ title: '', headerBackButtonDisplayMode: 'minimal' }} />
+      <Stack.Screen name="legal/[doc]" options={{ title: '', headerBackTitle: 'Back', headerBackButtonDisplayMode: 'minimal' }} />
     </Stack>
   );
 }

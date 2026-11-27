@@ -94,7 +94,7 @@ export default function AgentScreen() {
 
   return (
     <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
-      <Stack.Screen options={{ title: agent.hero }} />
+      <Stack.Screen options={{ title: agent.hero, headerBackTitle: 'Agents', headerBackButtonDisplayMode: 'minimal' }} />
       <ScrollView ref={scroll} contentContainerStyle={st.wrap} keyboardShouldPersistTaps="handled">
         <View style={st.head}>
           <HeroAvatar id={agent.id} icon={agent.icon as IconName} size={72} label={agent.hero} />
