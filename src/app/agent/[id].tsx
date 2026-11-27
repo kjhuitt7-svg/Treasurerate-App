@@ -112,6 +112,14 @@ export default function AgentScreen() {
           </View>
         </View>
 
+        {wallet.enabled && !wallet.unlimited ? (
+          <Card style={st.upsell} testID="upsell">
+            <Text style={st.upsellTitle}>Unlock every agent</Text>
+            <Text style={st.upsellText}>Get unlimited runs on all 15 agents with a plan, or a day pass for today.</Text>
+            <Button testID="upsell-plans" label="See plans" icon="lock-open-outline" onPress={() => router.push('/paywall')} />
+          </Card>
+        ) : null}
+
         {LEGAL_AGENTS.has(agent.id) ? (
           <Text style={st.notice} accessibilityRole="text">
             Not legal advice. For important agreements, consult a licensed attorney.
@@ -196,6 +204,9 @@ const st = StyleSheet.create({
   cost: { color: C.muted, fontSize: 12, marginTop: 2 },
   tip: { color: C.muted, fontSize: 13, backgroundColor: C.goldSoft, padding: S.md, borderRadius: R.md, overflow: 'hidden' },
   notice: { color: C.muted, fontSize: 12, fontStyle: 'italic' },
+  upsell: { gap: S.sm, borderColor: C.gold, borderWidth: 1 },
+  upsellTitle: { color: C.gold, fontSize: 17, fontWeight: '800' },
+  upsellText: { color: C.text, fontSize: 14 },
   error: { color: C.danger, fontSize: 14 },
   actions: { flexDirection: 'row', gap: S.sm, flexWrap: 'wrap' },
   disclaimer: { color: C.faint, fontSize: 12 },
