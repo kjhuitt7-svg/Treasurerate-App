@@ -32,7 +32,9 @@ export async function runAgent(
   try {
     res = (await fetch(`${API_BASE}/agents/${num}/run`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'text/plain' },
+      // Lets the TreasureRate server tell app runs apart from website runs, so the
+      // website's daily free-run limit doesn't block app users.
+      headers: { 'Content-Type': 'application/json', Accept: 'text/plain', 'X-TreasureRate-Client': 'back-office-ios' },
       body: JSON.stringify({ input }),
       signal,
     })) as unknown as Response;
@@ -42,7 +44,18 @@ export async function runAgent(
   }
 
   if (!res.ok) {
-    if (res.status === 429) throw new RunError('You are going a little fast. Wait a minute and try again.', 429);
+    if (res.status === 429) {
+      let serverError = '';
+      try {
+        serverError = (await res.json())?.detail?.error ?? '';
+      } catch {
+        // Not JSON: treat as a plain rate limit.
+      }
+      if (serverError === 'free_limit_reached') {
+        throw new RunError('The TreasureRate server's daily limit was reached. Please try again later.', 429);
+      }
+      throw new RunError('You are going a little fast. Wait a minute and try again.', 429);
+    }
     throw new RunError(`The agent could not finish (error ${res.status}). Please try again.`, res.status);
   }
 
